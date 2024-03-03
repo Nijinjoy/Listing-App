@@ -13,7 +13,7 @@ import Routes from './src/navigation/Routes';
 function App(): JSX.Element {
 
   return (
-    <View style={{ flex: 1, }}>
+    <View style={{ flex: 1 }}>
       <Routes />
     </View>
   );
