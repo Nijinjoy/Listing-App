@@ -4,7 +4,8 @@ const colors = {
     grey: "#6F6F6F",
     green: '#CFFA7C',
     lightgrey: '#E8ECF4',
-    white: '#FFFFFF'
+    white: '#FFFFFF',
+    ash: "#E8ECF4"
 }
 
 export default colors

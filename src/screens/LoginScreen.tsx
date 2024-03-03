@@ -6,7 +6,7 @@ import { HEIGHT, WIDTH } from '../constants/Dimension'
 import TextInputComponent from '../components/TextInputComponent'
 import ButtonComponent from '../components/ButtonComponent'
 import ItemComponent from '../components/ItemComponent'
-import { apple, fb, google } from '../assets/images'
+import { Vector, apple, fb, google } from '../assets/images'
 import { useNavigation } from '@react-navigation/native'
 
 const LoginScreen = () => {
@@ -22,6 +22,8 @@ const LoginScreen = () => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
             <HeaderComponent
+                imageStyle={{ width: WIDTH * 0.03, height: HEIGHT * 0.02 }}
+                backArrow={Vector}
                 onPress={() => navigation.goBack()}
             />
             <View style={{ flex: 1, justifyContent: 'space-between', marginHorizontal: WIDTH * 0.05, marginTop: HEIGHT * 0.1 }}>

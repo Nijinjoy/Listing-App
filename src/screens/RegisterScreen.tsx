@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import HeaderComponent from '../components/HeaderComponent'
 import ButtonComponent from '../components/ButtonComponent'
 import ItemComponent from '../components/ItemComponent'
-import { apple, fb, google } from '../assets/images'
+import { Vector, apple, fb, google } from '../assets/images'
 import { HEIGHT, WIDTH } from '../constants/Dimension'
 import TextInputComponent from '../components/TextInputComponent'
 
@@ -21,7 +21,11 @@ const RegisterScreen = () => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <HeaderComponent />
+            <HeaderComponent
+                backArrow={Vector}
+                onPress={() => navigation.goBack()}
+                imageStyle={{ width: WIDTH * 0.03, height: HEIGHT * 0.02 }}
+            />
             <View style={{ flex: 1, justifyContent: 'space-between', marginHorizontal: WIDTH * 0.05, marginTop: HEIGHT * 0.1 }}>
                 <View>
                     <Text style={{ fontSize: 30, fontWeight: 'bold', color: colors.lightblack, marginBottom: HEIGHT * 0.03 }}>Hello! Register to get started</Text>
@@ -33,6 +37,7 @@ const RegisterScreen = () => {
                     <View style={{ marginBottom: HEIGHT * 0.025 }} />
                     {renderTextInput("Confirm Pasword")}
                     <ButtonComponent
+                        onPress={() => navigation.navigate("HomeScreen")}
                         label="Register"
                         labelStyle={{ colors: colors.white }}
                         containerStyle={{ width: WIDTH * 0.9, backgroundColor: colors.black, borderRadius: WIDTH * 0.02, marginTop: HEIGHT * 0.04 }}
