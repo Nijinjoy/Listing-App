@@ -11,7 +11,7 @@ const TextInputComponent = (props) => {
             <TextInput
                 placeholder={placeholder}
                 placeholderTextColor={colors.grey}
-                style={{ flex: 1, marginHorizontal: WIDTH * 0.05 }}
+                style={{ flex: 1, marginHorizontal: WIDTH * 0.05, color: colors.black }}
                 secureTextEntry={password}
             />
             {password && <Image source={eye} style={{ marginHorizontal: WIDTH * 0.05, width: WIDTH * 0.03, height: HEIGHT * 0.02 }} resizeMode='contain' />}

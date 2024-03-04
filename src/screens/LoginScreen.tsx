@@ -20,7 +20,7 @@ const LoginScreen = () => {
     ];
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: colors.lightgrey }}>
             <HeaderComponent
                 imageStyle={{ width: WIDTH * 0.03, height: HEIGHT * 0.02 }}
                 backArrow={Vector}

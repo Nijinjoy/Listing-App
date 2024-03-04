@@ -9,5 +9,6 @@ import message from '../images/message/message.png'
 import search from '../images/search/search.png'
 import plus from '../images/plus/Frame.png'
 import profileicon from '../images/profileicon/profileicon.png'
+import more from '../images/more/more.png'
 
-export { Vector, eye, fb, apple, google, menu, location, message, search, plus }
+export { Vector, eye, fb, apple, google, menu, location, message, search, plus, profileicon, more }
