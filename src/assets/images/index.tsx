@@ -10,5 +10,11 @@ import search from '../images/search/search.png'
 import plus from '../images/plus/Frame.png'
 import profileicon from '../images/profileicon/profileicon.png'
 import more from '../images/more/more.png'
+import rectangle from '../images/rectangle/rectangle.png'
+import homefocussed from '../images/homefocussed/homefocussed.png'
+import home from '../images/home/home.png'
+import profilefocussed from '../images/profilefocussed/profilefocussed.png'
+import heart from '../images/heart/heart.png'
+import cart from '../images/cart/cart.png'
 
-export { Vector, eye, fb, apple, google, menu, location, message, search, plus, profileicon, more }
+export { Vector, eye, fb, apple, google, menu, location, message, search, plus, profileicon, more, rectangle, homefocussed, home, profilefocussed, heart, cart }

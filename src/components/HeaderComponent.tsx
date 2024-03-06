@@ -5,7 +5,7 @@ import { HEIGHT, WIDTH } from '../constants/Dimension'
 import colors from '../constants/Colors'
 
 const HeaderComponent = (props) => {
-    const { onPress, HeaderTitle, rightIcon, backArrow, headerImage, imageStyle } = props
+    const { onPress, HeaderTitle, rightIcon, backArrow, headerImage, imageStyle, navigate } = props
     return (
         <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: WIDTH * 0.05, marginTop: HEIGHT * 0.02 }}>
             <Pressable style={{ flex: 0.5 }} onPress={onPress}>
@@ -19,7 +19,7 @@ const HeaderComponent = (props) => {
                 )}
                 <Text style={{ color: colors.black, fontSize: 16, fontWeight: 500, marginHorizontal: WIDTH * 0.01 }}>{HeaderTitle}</Text>
             </View>
-            <Pressable style={{ flex: 0.5, alignItems: "flex-end", justifyContent: "center" }}>
+            <Pressable style={{ flex: 0.5, alignItems: "flex-end", justifyContent: "center" }} onPress={navigate}>
                 <Image source={rightIcon} style={{ width: WIDTH * 0.05, height: HEIGHT * 0.04 }} resizeMode='contain' />
             </Pressable>
         </View>

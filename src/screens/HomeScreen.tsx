@@ -1,11 +1,17 @@
 import React from 'react';
 import { View, Image, Pressable, FlatList, Text } from 'react-native';
-import { location, menu, message, more, plus, profileicon } from '../assets/images';
+import { location, menu, message, more, plus, profileicon, rectangle } from '../assets/images';
 import { HEIGHT, WIDTH } from '../constants/Dimension';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../constants/Colors';
 import SearchComponent from '../components/SearchComponent';
 import HeaderComponent from '../components/HeaderComponent';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import BottomtabComponent from '../components/BottomtabComponent';
+import LinearGradient from 'react-native-linear-gradient';
+import ProfileScreen from './ProfileScreen';
+
+// const Tab = createBottomTabNavigator();
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -15,8 +21,8 @@ const HomeScreen = () => {
         { id: 2, name: 'User 2', imageUrl: profileicon },
         { id: 3, name: 'User 3', imageUrl: profileicon },
         { id: 4, name: 'User 4', imageUrl: profileicon },
-        { id: 4, name: 'User 4', imageUrl: profileicon },
-        { id: 4, name: 'User 4', imageUrl: profileicon },
+        { id: 5, name: 'User 4', imageUrl: profileicon },
+        { id: 6, name: 'User 4', imageUrl: profileicon },
     ];
 
     const renderUserItem = ({ item }) => (
@@ -26,9 +32,10 @@ const HomeScreen = () => {
     );
 
     return (
-        <View style={{ flex: 1 }}>
+        <LinearGradient colors={['#ffffff', '#E5FFE3']} style={{ flex: 1 }}>
             <HeaderComponent
                 backArrow={menu}
+                navigate={() => navigation.navigate('ProfileScreen')}
                 headerImage={location}
                 HeaderTitle="Bangalore"
                 rightIcon={message}
@@ -40,7 +47,7 @@ const HomeScreen = () => {
                     <SearchComponent />
                 </View>
                 <FlatList
-                    data={[{ id: 'plus', imageUrl: plus }, ...users]} // Added plus icon at the beginning of the list
+                    data={[{ id: 'plus', imageUrl: plus }, ...users]}
                     horizontal
                     contentContainerStyle={{ marginTop: HEIGHT * 0.04 }}
                     showsHorizontalScrollIndicator={false}
@@ -58,7 +65,7 @@ const HomeScreen = () => {
                     keyExtractor={item => item.id.toString()}
                 />
                 <Text style={{ color: colors.black, marginHorizontal: WIDTH * 0.0, fontSize: 16, fontWeight: 500, marginTop: HEIGHT * 0.03 }}>Timeline</Text>
-                <View style={{ borderWidth: 1, borderRadius: WIDTH * 0.02, marginTop: HEIGHT * 0.03 }}>
+                <View style={{ borderWidth: 1, borderRadius: WIDTH * 0.02, marginTop: HEIGHT * 0.03, backgroundColor: colors.white }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10 }}>
                         <Image source={profileicon} />
                         <View style={{ marginHorizontal: WIDTH * 0.03, flex: 0.9 }}>
@@ -69,12 +76,13 @@ const HomeScreen = () => {
                             <Image source={more} style={{ width: WIDTH * 0.07, height: HEIGHT * 0.04 }} />
                         </View>
                     </View>
-                    <View style={{ height: HEIGHT * 0.25, backgroundColor: colors.green }}>
-
+                    <View style={{ height: HEIGHT * 0.34 }}>
+                        <Image source={rectangle} style={{ width: WIDTH * 0.9, height: HEIGHT * 0.34, borderRadius: WIDTH * 0.02 }} />
                     </View>
                 </View>
             </View>
-        </View >
+            <BottomtabComponent />
+        </LinearGradient>
     );
 }
 
