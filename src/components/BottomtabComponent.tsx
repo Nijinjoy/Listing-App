@@ -1,95 +1,153 @@
-import { View, Image, TouchableOpacity, Pressable } from 'react-native'
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { cart, heart, home, homefocussed, profilefocussed, search } from '../assets/images';
-import LoginScreen from '../screens/LoginScreen';
-import WishlistScreen from './WishlistScreen';
-import ProfileScreen from '../screens/ProfileScreen'; // Import ProfileScreen
+import React from 'react';
+import {
+    Alert,
+    Animated,
+    Image,
+    StyleSheet,
+    TouchableOpacity,
+    View,
+} from 'react-native';
+import { CurvedBottomBarExpo } from 'react-native-curved-bottom-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { location, cart, heart, profile, plus, home, profileicon } from '../assets/images'; // Assuming you have these images
 import colors from '../constants/Colors';
-import { HEIGHT, WIDTH } from '../constants/Dimension';
 
-const Tab = createBottomTabNavigator();
+const Screen1 = () => {
+    return <View style={styles.screen1} />;
+};
 
-const CustomTabBar = ({ state, descriptors, navigation }) => {
-    const onPressTab = (routeName) => {
-        navigation.navigate(routeName);
+const Screen2 = () => {
+    return <View style={styles.screen2} />;
+};
+
+const Screen3 = () => {
+    return <View style={styles.screen3} />;
+};
+
+const Screen4 = () => {
+    return <View style={styles.screen4} />;
+};
+
+export default function App() {
+    const _renderIcon = (routeName, selectedTab) => {
+        let icon = '';
+
+        switch (routeName) {
+            case 'title1':
+                icon = home;
+                break;
+            case 'title2':
+                icon = cart;
+                break;
+            case 'title3':
+                icon = heart;
+                break;
+            case 'title4':
+                icon = profileicon;
+                break;
+        }
+
+        return (
+            <Image source={icon} style={styles.icon} />
+        );
+    };
+
+    const renderTabBar = ({ routeName, selectedTab, navigate }) => {
+        return (
+            <TouchableOpacity
+                onPress={() => navigate(routeName)}
+                style={styles.tabbarItem}
+            >
+                {_renderIcon(routeName, selectedTab)}
+            </TouchableOpacity>
+        );
     };
 
     return (
-        <View style={{ flexDirection: 'row', backgroundColor: 'black', width: WIDTH, height: HEIGHT * 0.02, flex: 1 }}>
-            {state.routes.map((route, index) => {
-                const { options } = descriptors[route.key];
-                const label =
-                    options.tabBarLabel !== undefined
-                        ? options.tabBarLabel
-                        : options.title !== undefined
-                            ? options.title
-                            : route.name;
-
-                const isFocused = state.index === index;
-
-                const onPress = () => {
-                    const event = navigation.emit({
-                        type: 'tabPress',
-                        target: route.key,
-                        canPreventDefault: true,
-                    });
-
-                    if (!isFocused && !event.defaultPrevented) {
-                        onPressTab(route.name); // Call onPressTab to navigate
-                    }
-                };
-
-                const onLongPress = () => {
-                    navigation.emit({
-                        type: 'tabLongPress',
-                        target: route.key,
-                    });
-                };
-
-                let iconName;
-                if (route.name === 'Home') {
-                    iconName = isFocused ? homefocussed : home;
-                } else if (route.name === 'Cart') {
-                    iconName = isFocused ? cart : cart;
-                } else if (route.name === 'Heart') {
-                    iconName = isFocused ? heart : heart;
-                } else if (route.name === 'Profile') {
-                    iconName = isFocused ? profilefocussed : profilefocussed;
-                }
-
-                return (
-                    <Pressable
-                        key={index}
-                        accessibilityRole="button"
-                        accessibilityState={isFocused ? { selected: true } : {}}
-                        accessibilityLabel={options.tabBarAccessibilityLabel}
-                        testID={options.tabBarTestID}
-                        onPress={onPress}
-                        onLongPress={onLongPress}
-                        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-                    >
-                        <Image source={iconName} style={{ width: 24, height: 24 }} tintColor={colors.white} />
-                    </Pressable>
-                );
-            })}
-        </View>
-    );
-};
-
-const BottomtabComponent = () => {
-    return (
-        <Tab.Navigator
-            tabBar={props => <CustomTabBar {...props} />}
+        <CurvedBottomBarExpo.Navigator
+            type="DOWN"
+            style={styles.bottomBar}
+            shadowStyle={styles.shadow}
+            height={55}
+            circleWidth={50}
+            bgColor={colors.black}
+            initialRouteName="title1"
+            borderTopLeftRight
+            renderCircle={({ selectedTab, navigate }) => (
+                <Animated.View style={styles.btnCircleUp}>
+                    <Image source={plus} style={styles.icon} />
+                </Animated.View>
+            )}
+            tabBar={renderTabBar}
         >
-            <Tab.Screen name="Home" component={WishlistScreen} options={{ headerShown: false }} />
-            <Tab.Screen name="Cart" component={WishlistScreen} options={{ headerShown: false }} />
-            <Tab.Screen name="Heart" component={WishlistScreen} options={{ headerShown: false }} />
-            <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
-        </Tab.Navigator>
-    )
+            <CurvedBottomBarExpo.Screen
+                name="title1"
+                position="LEFT"
+                component={Screen1}
+            />
+            <CurvedBottomBarExpo.Screen
+                name="title2"
+                position="LEFT"
+                component={Screen2}
+            />
+            <CurvedBottomBarExpo.Screen
+                name="title3"
+                position="RIGHT"
+                component={Screen3}
+            />
+            <CurvedBottomBarExpo.Screen
+                name="title4"
+                position="RIGHT"
+                component={Screen4}
+            />
+        </CurvedBottomBarExpo.Navigator>
+
+    );
 }
 
-export default BottomtabComponent;
+const styles = StyleSheet.create({
+    bottomBar: {},
+    shadow: {
+        shadowColor: '#DDDDDD',
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 5,
+    },
+    button: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    btnCircleUp: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#E8E8E8',
+        bottom: 30,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 1,
+    },
+    tabbarItem: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    icon: {
+        width: 30,
+        height: 30,
+    }
+});
+
+
+
 

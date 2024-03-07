@@ -9,7 +9,7 @@ const HeaderComponent = (props) => {
     return (
         <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: WIDTH * 0.05, marginTop: HEIGHT * 0.02 }}>
             <Pressable style={{ flex: 0.5 }} onPress={onPress}>
-                <View style={{ borderColor: colors.lightgrey, borderWidth: 0.5, padding: WIDTH * 0.015, width: WIDTH * 0.08, borderRadius: WIDTH * 0.02, alignItems: 'center', justifyContent: "center" }}>
+                <View style={{ borderColor: `${colors.grey}50`, borderWidth: 0.5, padding: WIDTH * 0.015, width: WIDTH * 0.08, borderRadius: WIDTH * 0.02, alignItems: 'center', justifyContent: "center" }}>
                     <Image source={backArrow} style={{ ...imageStyle }} resizeMode='contain' />
                 </View>
             </Pressable>

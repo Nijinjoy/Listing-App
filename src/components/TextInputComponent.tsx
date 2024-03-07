@@ -7,7 +7,7 @@ import { eye } from '../assets/images'
 const TextInputComponent = (props) => {
     const { placeholder, password } = props
     return (
-        <View style={{ borderWidth: 1, borderColor: colors.lightgrey, flexDirection: 'row', alignItems: 'center', borderRadius: WIDTH * 0.02, backgroundColor: colors.ash }}>
+        <View style={{ borderWidth: 1, borderColor: `${colors.grey}25`, flexDirection: 'row', alignItems: 'center', borderRadius: WIDTH * 0.02, backgroundColor: colors.ash }}>
             <TextInput
                 placeholder={placeholder}
                 placeholderTextColor={colors.grey}
